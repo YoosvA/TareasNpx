@@ -1,8 +1,9 @@
 export const Footer = ({porcentaje}) => {
-  if (isNaN(porcentaje) || porcentaje === 0) {
-    porcentaje = 0;
+  // No renderizar si porcentaje no es un número válido o es menor o igual a 0
+  if (isNaN(porcentaje) || porcentaje <= 0) {
+    return null; 
   }
-  
+
   return (
     <>
       <div className="progress fixed-bottom">

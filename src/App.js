@@ -4,7 +4,7 @@ import { FormularioTareas } from "./components/FormularioTareas/FormularioTareas
 import { Header } from "./components/Header/Header";
 import { RegistroTareas } from "./components/RegistroTareas/RegistroTareas";
 import { tareaReducer } from "./reducers/tareaReducer";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 export const App = () => {
   const init = () => {
@@ -69,28 +69,27 @@ export const App = () => {
   const handelEliminar = (id) => {
     // Mostrar SweetAlert de confirmación antes de eliminar
     Swal.fire({
-      title: '¿Estás seguro?',
+      title: "¿Estás seguro?",
       text: "No podrás revertir la tarea.",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminarlo'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminarlo",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch({
-          type: 'borrar',
-          payload: id
+          type: "borrar",
+          payload: id,
         });
         Swal.fire(
-          '¡Eliminado!',
-          'La tarea ha sido eliminada satisfactoriamente.',
-          'success'
+          "¡Eliminado!",
+          "La tarea ha sido eliminada satisfactoriamente.",
+          "success"
         );
       }
     });
   };
-  
 
   let terminadas = 0;
 
@@ -100,7 +99,12 @@ export const App = () => {
     }
   }
 
-  let porcentaje = terminadas / state.length;
+  // let porcentaje = terminadas / state.length;
+  let porcentaje = 0;
+
+  if (state.length > 0) {
+    porcentaje = terminadas / state.length;
+  }
 
   //lamando componente header
   return (
